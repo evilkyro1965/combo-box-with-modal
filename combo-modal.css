@@ -1,0 +1,20 @@
+.jqueryComboModal {
+	border:1px #999999 solid;
+	background-color:#ffffff;
+	padding:20px;
+	position:absolute;
+	min-width:300px;
+	min-height:300px;
+	border-radius:10px;
+}
+
+.jqueryComboModal a {
+	font-family: arial;
+	font-size:12px;
+	color:black;
+	text-decoration: none;
+}
+.jqueryComboModal a {
+	display:block;
+	margin-bottom:8px;
+}
