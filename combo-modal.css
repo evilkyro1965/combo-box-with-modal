@@ -1,21 +1,26 @@
 .jqueryComboModal {
-	border:1px #7f9db9 solid;
+	border:1px #c4c6c9 solid;
 	background-color:#ffffff;
 	position:absolute;
 	left:0px;
 	display:none;
+	border-radius:5px;
+	box-shadow: 0px 0px 5px #bdbfc2;
 }
-.jqueryComboModal a {
+.jqueryComboModal .comboItem {
 	font-family: arial;
 	font-size:12px;
 	color:black;
 	text-decoration: none;
 	display:block;
-	padding:3px 10px;
-	height:12px;
-	line-height:12px;
+	padding:0px 10px;
+	height:33px;
+	line-height:33px;
+	font-family:helvetica,arial;
+	color:#575d62;
+	font-size:14px;
 }
-.jqueryComboModal a:hover {
-	background-color:#1e90ff;
-	color:#ffffff;
+.jqueryComboModal .comboItem:hover {
+	background-color:#eeeeee;
+	color:#575d62;
 }

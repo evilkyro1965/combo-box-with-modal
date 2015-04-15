@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+    <title>Combo Box With Modal</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		
+		<link rel="stylesheet" type="text/css" href="combo-modal.css">
+		<link rel="stylesheet" href="wiki.css">
+    
+    <!-- Latest compiled and minified JavaScript 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		-->
+    <script src="jquery-2.1.3.js"></script>
+		<script src="combo-modal.js"></script>
+		<script>
+			$(document).ready(function() {
+				
+				var data = [
+					{'value':'en','label':'English'},
+					{'value':'ina','label':'Indonesia'}
+				];
+				$("#language").comboModal({'data':data});
+				
+				$("#getSelected").on('click',function(){
+					var selected = $("#language").data('selected');
+					console.log(selected);
+				});
+			});
+		</script>
+
+</head>
+<body>
+  
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+			
+			<div class="row">
+				<div id="pluginTitle" class="jumbotron">
+					<h1>Combo Box Plugin</h1>
+				</div>
+				<p>This is the plugin to make a combo box button</p>
+				<p>Example: </p>
+				<div class="wrapper">
+					<a href="javascript:;" id="language" class="combo"><span class='comboLabel'>Language</span></a>
+					<div class="clearfix"></div>
+				</div>
+				<p>The snippet<p>
+				<p>HTML</p>
+				<pre>&lt;a href=&quot;javascript:;&quot; id=&quot;language&quot; class=&quot;combo&quot;&gt;&lt;span class='label'&gt;Language&lt;/span&gt;&lt;/a&gt;
+				</pre>
+				<p>Javascript</p>
+				<pre>
+var data = [
+	{'value':'en','label':'English'},
+	{'value':'ina','label':'Indonesia'}
+];
+
+$("#language").comboModal({'data':data});
+				</pre>
+			</div>
+
+    </div><!-- /.container -->
+	
+	
+  
+</body>
+</html>

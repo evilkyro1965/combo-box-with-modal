@@ -16,7 +16,7 @@
 				options.id = id;
 				
 				for(var i=0;i<data.length;i++) {
-					$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
+					$(options.id).append("<div class='comboItem' value='"+data[i].value+"'>"+data[i].label+"</div>");
 				}
 			}
 			
@@ -38,18 +38,18 @@
 					if (!container.is(e.target) 
 							&& container.has(e.target).length === 0) 
 					{
-						options.show = false;	
+						container.removeClass('opened')
 						container.hide();
 					}
 					
 			});
 			
-			$(options.id+" a").on('click',function(event){
+			$(options.id+" .comboItem").on('click',function(event){
 				var target = $(event.target);
 				options.selected.label = target.html();
 				options.selected.value = target.attr('value');
 				$(comboModalId).data("selected",options.selected);
-				$(comboModalId).find(".label").html(options.selected.label);
+				$(comboModalId).find(".comboLabel").html(options.selected.label);
 			});
 			counterId++;
 			

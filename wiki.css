@@ -1,0 +1,28 @@
+.combo {
+	position:relative;
+	text-decoration:none;
+	color:black;
+	height:36px;
+	line-height:36px;
+	border:1px #d9dadb solid;
+	float:left;
+	width:150px;
+	border-radius:5px;
+	background:url(combo-bg.png) repeat-x center left;
+	font-family:helvetica,arial;
+	color:#575d62;
+}
+.combo span{
+	display:block;
+	padding:0px 10px;
+	padding-right:25px;
+	background:url(combo-arrow.png) no-repeat top right;
+	margin-right:2px;
+}
+.combo:hover {
+	text-decoration:none;
+}
+.wrapper {
+	padding-top:20px;
+	padding-left:10px;
+}
