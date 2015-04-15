@@ -1,2 +1,36 @@
-body{padding-top:50px;}
-.starter-template{padding:40px 15px;text-align:center;}
+body{padding-top:70px;}
+.wrapper {
+	display:block;
+	clear:both;
+	margin-bottom:20px;
+}
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+.combo {
+	position:relative;
+	text-decoration:none;
+	color:black;
+	padding:0px 10px;
+	height:24px;
+	line-height:24px;
+	border:1px #7f9db9 solid;
+	float:left;
+	padding-right:25px;
+	width:150px;
+	border-radius:5px;
+}
+.container  .combo span.label{
+	color:black;
+}
+.combo:hover {
+	text-decoration:none;
+}
+.wrapper {
+	padding-top:20px;
+	padding-left:10px;
+}
