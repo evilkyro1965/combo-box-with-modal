@@ -1,11 +1,8 @@
 .jqueryComboModal {
 	border:1px #999999 solid;
 	background-color:#ffffff;
-	padding:20px;
+	padding:5px 5px 0px 5px;
 	position:absolute;
-	min-width:300px;
-	min-height:300px;
-	border-radius:10px;
 }
 
 .jqueryComboModal a {
@@ -13,6 +10,10 @@
 	font-size:12px;
 	color:black;
 	text-decoration: none;
+}
+.jqueryComboModal a {
+	display:block;
+	margin-bottom:8px;
 }
 .jqueryComboModal a {
 	display:block;
