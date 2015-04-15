@@ -7,39 +7,69 @@
     <link rel="stylesheet" type="text/css" href="combo-modal.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery-2.1.3.js"></script>
-    <script src="jquery-ui.js"></script>
 		<script>
-		(function($) {
-			$.widget( "comboModal", {
-			    options: {
-			        data : new Array(),
+			(function($) {
+				counterId = 1;
+				
+				$.fn.comboModal = function( options ) {
+					
+					$(this).each(function(){  
+						var comboModalId = "#"+$(this).attr('id');
+						
+						options = $.extend({}, $.fn.comboModal.defaultOptions, options);
+						console.log(options);
+						var data = options.data;
+						if(data.length>0){
+							var id = "#jqueryComboModal"+counterId;
+							$("body").append("<div id='jqueryComboModal"+counterId+"' class='jqueryComboModal'></div>");
+							options.id = id;
+							var offset = $(this).offset();
+							$(options.id).css("top",offset.top+20);
+							$(options.id).css("left",offset.left);
+							$(options.id).hide();
+							for(var i=0;i<data.length;i++) {
+								$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
+							}
+						}
+						
+						$(this).on('click',function(){
+							var showModal = options.show == true ? false : true;
+							options.show = showModal;
+							if(showModal) {
+								$(options.id).show();
+							}
+							else {
+								$(options.id).hide();
+							}
+						});
+
+						$(options.id+" a").on('click',function(event){
+							options.show = false;
+							$(options.id).hide();
+							var target = $(event.target);
+							options.selected.label = target.html();
+							options.selected.value = target.attr('value');
+							$(comboModalId).data("selected",options.selected);
+						});				
+						
+						counterId++;
+						
+					});		
+
+  			};
+				     
+				$.fn.comboModal.defaultOptions = {
+					data : new Array(),
 					modalDiv : 
 						"<div class='jqueryComboModal'>"+
 						"</div>",
 					show : false,
 					selected : {},
 					id : ""
-			    },
-			 
-			    _create: function() {
-			       var data = options.data;
-					if(data.length>0){
-						var id = "jqueryComboModal"+counterId;
-						counterId++;
-						$("body").append("<div id='"+id+"' class='jqueryComboModal'></div>");
-						id = "#"+id;
-						options.id = id;
-						$(options.id).hide();
-						for(var i=0;i<data.length;i++) {
-							$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
-						}
-					}
-			    }
-			    
+				};
+					
+			}(jQuery));
 
-			 
-			})
-		}(jQuery));	
 
 			$(document).ready(function() {
 				
@@ -53,20 +83,20 @@
 					{'value':'indonesia','label':'Indonesia'}
 				];
 
-				/*	
+
 				$("#language").comboModal({'data':data});
 				$("#country").comboModal({'data':country});
+				
 				$("#getSelected").on('click',function(){
-					var selected = $("#language").comboModal('get');
+					var selected = $("#language").data('selected');
 					console.log(selected);
 				});
 				$("#getCountry").on('click',function(){
-					var selected = $("#country").comboModal('get');
+					var selected = $("#country").data('selected');
 					console.log(selected);
 				});
 
-				*/
-				$("#language").comboModal({'data':data});
+
 			});
 
 		</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+    <title>Prototype1</title>
+    <link rel="stylesheet" type="text/css" href="combo-modal.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="jquery-2.1.3.js"></script>
+    <script src="jquery-ui.js"></script>
+		<script>
+		(function($) {
+			$.widget( "comboModal", {
+			    options: {
+			        data : new Array(),
+					modalDiv : 
+						"<div class='jqueryComboModal'>"+
+						"</div>",
+					show : false,
+					selected : {},
+					id : ""
+			    },
+			 
+			    _create: function() {
+			       var data = options.data;
+					if(data.length>0){
+						var id = "jqueryComboModal"+counterId;
+						counterId++;
+						$("body").append("<div id='"+id+"' class='jqueryComboModal'></div>");
+						id = "#"+id;
+						options.id = id;
+						$(options.id).hide();
+						for(var i=0;i<data.length;i++) {
+							$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
+						}
+					}
+			    }
+			    
+
+			 
+			})
+		}(jQuery));	
+
+			$(document).ready(function() {
+				
+				var data = [
+					{'value':'en','label':'English'},
+					{'value':'ina','label':'Indonesia'}
+				];
+
+				var country = [
+					{'value':'usa','label':'United States Of America'},
+					{'value':'indonesia','label':'Indonesia'}
+				];
+
+				/*	
+				$("#language").comboModal({'data':data});
+				$("#country").comboModal({'data':country});
+				$("#getSelected").on('click',function(){
+					var selected = $("#language").comboModal('get');
+					console.log(selected);
+				});
+				$("#getCountry").on('click',function(){
+					var selected = $("#country").comboModal('get');
+					console.log(selected);
+				});
+
+				*/
+				$("#language").comboModal({'data':data});
+			});
+
+		</script>
+
+</head>
+<body>
+<a href="javascript:;" id="language" class="combo">Language</a>
+<a href="javascript:;" id="getSelected" class="combo">Get Selected</a>
+<p>&nbsp;</p><p>&nbsp;</p>
+<a href="javascript:;" id="country" class="combo">Country</a>
+<a href="javascript:;" id="getCountry" class="combo">Get Selected</a>
+</body>
+</html>
