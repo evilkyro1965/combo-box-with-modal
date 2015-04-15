@@ -7,79 +7,8 @@
     <link rel="stylesheet" type="text/css" href="combo-modal.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery-2.1.3.js"></script>
+		<script src="combo-modal.js"></script>
 		<script>
-			(function($) {
-				counterId = 1;
-				
-				$.fn.comboModal = function( options ) {
-					
-					$(this).each(function(){  
-						var comboModalId = "#"+$(this).attr('id');
-						
-						options = $.extend({}, $.fn.comboModal.defaultOptions, options);
-						var data = options.data;
-						if(data.length>0){
-							var id = "#jqueryComboModal"+counterId;
-							$(comboModalId).append("<div id='jqueryComboModal"+counterId+"' class='jqueryComboModal'></div>");
-							options.id = id;
-							
-							for(var i=0;i<data.length;i++) {
-								$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
-							}
-						}
-						
-						$(this).on('click',function(e){
-							//var showModal = options.show == true ? false : true;
-							//options.show = showModal;
-							if(!$(comboModalId+" "+".jqueryComboModal").is(":visible")) {
-								$(comboModalId+" "+".jqueryComboModal").show();
-							}
-							else {
-								$(comboModalId+" "+".jqueryComboModal").hide();
-							}
-						});
-						
-						$(document).mouseup(function (e){
-						
-								var container = $(comboModalId+" "+".jqueryComboModal");
-
-								if (!container.is(e.target) 
-										&& container.has(e.target).length === 0) 
-								{
-									options.show = false;	
-									container.hide();
-								}
-								
-						});
-						
-						$(options.id+" a").on('click',function(event){
-							//options.show = false;
-							var target = $(event.target);
-							//var showModal = options.show == true ? false : true;
-							//options.show = showModal;
-							options.selected.label = target.html();
-							options.selected.value = target.attr('value');
-							$(comboModalId).data("selected",options.selected);
-							$(comboModalId).find(".label").html(options.selected.label);
-						});
-						counterId++;
-						
-					});		
-
-  			};
-				     
-				$.fn.comboModal.defaultOptions = {
-					data : new Array(),
-					modalDiv : 
-						"<div class='jqueryComboModal'>"+
-						"</div>",
-					show : false,
-					selected : {},
-					id : ""
-				};
-					
-			}(jQuery));
-
 
 			$(document).ready(function() {
 				
@@ -113,9 +42,8 @@
 
 </head>
 <body>
-	<a href="javascript:;" id="language" class="combo"><span class='label'>Language</label></a>
-	<a href="javascript:;" id="getSelected">Get Selected</a>
-	<a href="javascript:;" id="country" class="combo"><span class='label'>Country</label></a>
-	<a href="javascript:;" id="getCountry">Get Selected</a>
+	<div class="wrapper">
+		<a href="javascript:;" id="language" class="combo"><span class='label'>Language</span></a>
+	</div>
 </body>
 </html>

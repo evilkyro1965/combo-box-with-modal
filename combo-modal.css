@@ -2,7 +2,6 @@
 	border:1px #7f9db9 solid;
 	background-color:#ffffff;
 	position:absolute;
-	top:18px;
 	left:0px;
 	display:none;
 }
@@ -13,6 +12,8 @@
 	text-decoration: none;
 	display:block;
 	padding:3px 10px;
+	height:12px;
+	line-height:12px;
 }
 .jqueryComboModal a:hover {
 	background-color:#1e90ff;
