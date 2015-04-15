@@ -17,41 +17,51 @@
 						var comboModalId = "#"+$(this).attr('id');
 						
 						options = $.extend({}, $.fn.comboModal.defaultOptions, options);
-						console.log(options);
 						var data = options.data;
 						if(data.length>0){
 							var id = "#jqueryComboModal"+counterId;
-							$("body").append("<div id='jqueryComboModal"+counterId+"' class='jqueryComboModal'></div>");
+							$(comboModalId).append("<div id='jqueryComboModal"+counterId+"' class='jqueryComboModal'></div>");
 							options.id = id;
-							var offset = $(this).offset();
-							$(options.id).css("top",offset.top+20);
-							$(options.id).css("left",offset.left);
-							$(options.id).hide();
+							
 							for(var i=0;i<data.length;i++) {
 								$(options.id).append("<a href='javascript:;' value='"+data[i].value+"'>"+data[i].label+"</a>");
 							}
 						}
 						
-						$(this).on('click',function(){
-							var showModal = options.show == true ? false : true;
-							options.show = showModal;
-							if(showModal) {
-								$(options.id).show();
+						$(this).on('click',function(e){
+							//var showModal = options.show == true ? false : true;
+							//options.show = showModal;
+							if(!$(comboModalId+" "+".jqueryComboModal").is(":visible")) {
+								$(comboModalId+" "+".jqueryComboModal").show();
 							}
 							else {
-								$(options.id).hide();
+								$(comboModalId+" "+".jqueryComboModal").hide();
 							}
 						});
+						
+						$(document).mouseup(function (e){
+						
+								var container = $(comboModalId+" "+".jqueryComboModal");
 
+								if (!container.is(e.target) 
+										&& container.has(e.target).length === 0) 
+								{
+									options.show = false;	
+									container.hide();
+								}
+								
+						});
+						
 						$(options.id+" a").on('click',function(event){
-							options.show = false;
-							$(options.id).hide();
+							//options.show = false;
 							var target = $(event.target);
+							//var showModal = options.show == true ? false : true;
+							//options.show = showModal;
 							options.selected.label = target.html();
 							options.selected.value = target.attr('value');
 							$(comboModalId).data("selected",options.selected);
-						});				
-						
+							$(comboModalId).find(".label").html(options.selected.label);
+						});
 						counterId++;
 						
 					});		
@@ -103,9 +113,9 @@
 
 </head>
 <body>
-<a href="javascript:;" id="language" class="combo">Language</a>
-<a href="javascript:;" id="getSelected" class="combo">Get Selected</a>
-<a href="javascript:;" id="country" class="combo">Country</a>
-<a href="javascript:;" id="getCountry" class="combo">Get Selected</a>
+	<a href="javascript:;" id="language" class="combo"><span class='label'>Language</label></a>
+	<a href="javascript:;" id="getSelected">Get Selected</a>
+	<a href="javascript:;" id="country" class="combo"><span class='label'>Country</label></a>
+	<a href="javascript:;" id="getCountry">Get Selected</a>
 </body>
 </html>
