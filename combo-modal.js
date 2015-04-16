@@ -24,30 +24,41 @@
 				if($(options.id).hasClass('opened')==false) {
 					$(options.id).addClass('opened')
 					$(options.id).css("display","block");
+					if( typeof options.selected.index !== "undefined") {
+						$(options.id).scrollTop( options.selected.scrollTop );
+					}
 				}
 				else {
 					$(options.id).removeClass('opened')
 					$(options.id).css("display","none");
 				}
+
 			});
 			
 			$(document).mouseup(function (e){
 			
-					var container = $(comboModalId+" "+".jqueryComboModal");
+					var container = $(comboModalId);
 
 					if (!container.is(e.target) 
 							&& container.has(e.target).length === 0) 
 					{
-						container.removeClass('opened')
-						container.hide();
+						container.find(".jqueryComboModal").removeClass('opened');
+						container.find(".jqueryComboModal").hide();
 					}
-					
+
 			});
 			
 			$(options.id+" .comboItem").on('click',function(event){
 				var target = $(event.target);
 				options.selected.label = target.html();
 				options.selected.value = target.attr('value');
+				var optionsWrapper = $(options.id);
+				var index = $(options.id+" .comboItem").index( target );
+				options.selected.index = index;
+				options.selected.scrollTop = $(options.id).scrollTop();
+				
+				$(options.id+" .comboItem").removeClass("selected");
+				target.addClass("selected");
 				$(comboModalId).data("selected",options.selected);
 				$(comboModalId).find(".comboLabel").html(options.selected.label);
 			});
